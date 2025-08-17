@@ -4,29 +4,46 @@
   background: $salad-medium;
   padding: $spacing-xl 0;
   
-  .card {
-    border: none;
-    box-shadow: $box-shadow;
-    transition: $transition-base;
-    
-    &:hover {
-      transform: translateY(-5px);
-      box-shadow: $box-shadow-lg;
-    }
-    
-    .card-img-top {
-      height: 200px;
-      object-fit: cover;
-      width: 100%;
-    }
-    
-    .card-title {
+  .service-category {
+    .category-title {
       color: $dark-color;
+      font-size: 1.5rem;
       font-weight: 600;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 3px solid $success-color;
+      display: inline-block;
     }
     
-    .card-text {
-      color: $secondary-color;
+    .service-item {
+      background: white;
+      border-radius: 10px;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: $box-shadow;
+      transition: $transition-base;
+      height: 100%;
+      border: 2px solid transparent;
+      
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: $box-shadow-lg;
+        border-color: $success-color;
+      }
+      
+      .service-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        display: block;
+      }
+      
+      h5 {
+        color: $dark-color;
+        font-size: 1rem;
+        font-weight: 600;
+        margin: 0;
+        line-height: 1.4;
+      }
     }
   }
 }
