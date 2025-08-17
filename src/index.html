@@ -3,15 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ремонт под ключ — Лендинг</title>
+  <title>ИП Гасанов Э.З. — Ремонт под ключ</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="./css/style.min.css" rel="stylesheet">
 </head>
 <body>
   <!-- Header/Navbar -->
   <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg">
       <div class="container">
-        <a class="navbar-brand" href="#">Логотип</a>
+        <a class="navbar-brand" href="#">
+          <img src="./icons/logo.svg" alt="ИП Гасанов Э.З." class="navbar-logo">
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -30,7 +33,7 @@
 
   <main>
     <!-- Hero Section -->
-    <section class="py-5 bg-light text-center">
+    <section class="hero-section py-5 text-center">
       <div class="container">
         <h1 class="display-5 fw-bold">Профессиональный ремонт под ключ</h1>
         <p class="lead mb-4">Качество, сроки, гарантия. Бесплатный выезд и смета. Работаем по договору.</p>
@@ -39,37 +42,34 @@
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="py-5">
+    <section id="services" class="services-section py-5">
       <div class="container">
         <h2 class="mb-4 text-center">Наши услуги</h2>
         <div class="row row-cols-1 row-cols-md-3 g-4">
           <div class="col">
             <div class="card h-100">
-              <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Штукатурка стен">
+              <img src="./img/the-blowup-d8wQv6VoZjc-unsplash.jpg" class="card-img-top" alt="Штукатурка стен">
               <div class="card-body">
                 <h5 class="card-title">Штукатурка стен</h5>
                 <p class="card-text">Профессиональная штукатурка стен любой сложности. Выравнивание поверхностей, подготовка под покраску или поклейку обоев.</p>
-                <a href="#contacts" class="btn btn-primary">Подробнее</a>
               </div>
             </div>
           </div>
           <div class="col">
             <div class="card h-100">
-              <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Покраска потолков">
+              <img src="./img/usgs-eGGENWtikd0-unsplash.jpg" class="card-img-top" alt="Покраска потолков">
               <div class="card-body">
                 <h5 class="card-title">Покраска потолков</h5>
                 <p class="card-text">Качественная покраска потолков с использованием современных материалов. Безупречный результат и долговечность.</p>
-                <a href="#contacts" class="btn btn-primary">Подробнее</a>
               </div>
             </div>
           </div>
           <div class="col">
             <div class="card h-100">
-              <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Укладка плитки">
+              <img src="./img/pawel-czerwinski-eimEio8958o-unsplash.jpg" class="card-img-top" alt="Укладка плитки">
               <div class="card-body">
                 <h5 class="card-title">Укладка плитки</h5>
                 <p class="card-text">Укладка керамической плитки в ванных комнатах, кухнях и других помещениях. Точная подрезка и качественные швы.</p>
-                <a href="#contacts" class="btn btn-primary">Подробнее</a>
               </div>
             </div>
           </div>
@@ -78,53 +78,57 @@
     </section>
 
     <!-- Portfolio Section -->
-    <section id="portfolio" class="py-5 bg-light">
+    <section id="portfolio" class="portfolio-section py-5">
       <div class="container">
         <h2 class="mb-4 text-center">Портфолио</h2>
         <div class="row row-cols-2 row-cols-md-4 g-3">
-          <div class="col"><img src="https://via.placeholder.com/300x200" class="img-fluid rounded" alt="Пример работы"></div>
-          <div class="col"><img src="https://via.placeholder.com/300x200" class="img-fluid rounded" alt="Пример работы"></div>
-          <div class="col"><img src="https://via.placeholder.com/300x200" class="img-fluid rounded" alt="Пример работы"></div>
-          <div class="col"><img src="https://via.placeholder.com/300x200" class="img-fluid rounded" alt="Пример работы"></div>
+          <div class="col"><img src="./img/cooming_soon.png" class="img-fluid rounded portfolio-img" alt="Пример работы"></div>
+          <div class="col"><img src="./img/jorge-vasconez-f5sog5ia-rU-unsplash.jpg" class="img-fluid rounded portfolio-img" alt="Пример работы"></div>
+          <div class="col"><img src="./img/liana-s-fjVaPH9mhkg-unsplash.jpg" class="img-fluid rounded portfolio-img" alt="Пример работы"></div>
+          <div class="col"><img src="./img/types_2020.jpg" class="img-fluid rounded portfolio-img" alt="Пример работы"></div>
         </div>
       </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-5">
+    <section id="about" class="about-section py-5">
       <div class="container">
         <h2 class="mb-4 text-center">О компании</h2>
         <p class="text-center">10 лет на рынке, гарантия 2 года. Работаем по договору. Бесплатная консультация и выезд специалиста.</p>
         <!-- Отзывы -->
-        <div id="reviewsCarousel" class="carousel slide mx-auto" data-bs-ride="carousel" style="max-width: 500px;">
+        <div id="testimonialsCarousel" class="carousel slide">
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <blockquote class="blockquote text-center">
-                <p class="mb-0">Все сделали быстро и качественно! Рекомендую.</p>
-                <footer class="blockquote-footer">Иван П.</footer>
-              </blockquote>
+              <div class="text-center">
+                <blockquote class="blockquote">
+                  <p class="mb-3">Все сделали быстро и качественно! Рекомендую.</p>
+                  <footer class="blockquote-footer">Иван П.</footer>
+                </blockquote>
+              </div>
             </div>
             <div class="carousel-item">
-              <blockquote class="blockquote text-center">
-                <p class="mb-0">Отличная команда, помогли с выбором материалов.</p>
-                <footer class="blockquote-footer">Мария К.</footer>
-              </blockquote>
+              <div class="text-center">
+                <blockquote class="blockquote">
+                  <p class="mb-3">Отличная команда, помогли с выбором материалов.</p>
+                  <footer class="blockquote-footer">Мария К.</footer>
+                </blockquote>
+              </div>
             </div>
           </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="prev">
+          <button class="carousel-control-prev" type="button" data-bs-target="#testimonialsCarousel" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
+            <span class="visually-hidden">Предыдущий</span>
           </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="next">
+          <button class="carousel-control-next" type="button" data-bs-target="#testimonialsCarousel" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
+            <span class="visually-hidden">Следующий</span>
           </button>
         </div>
       </div>
     </section>
 
     <!-- Contacts Section -->
-    <section id="contacts" class="py-5 bg-light">
+    <section id="contacts" class="contacts-section py-5">
       <div class="container">
         <h2 class="mb-4 text-center">Контакты</h2>
         <div class="row justify-content-center">
@@ -155,10 +159,10 @@
   </main>
 
   <!-- Footer -->
-  <footer class="py-4 bg-dark text-light">
+  <footer class="footer py-4">
     <div class="container text-center">
-      <div>+7 (999) 123-45-67 | info@example.com</div>
-      <div class="mt-2">&copy; 2024 Ремонт под ключ. Все права защищены.</div>
+              <div>+7 (999) 123-45-67 | info@example.com</div>
+        <div class="mt-2">&copy; 2024 ИП Гасанов Э.З. Все права защищены.</div>
     </div>
   </footer>
 

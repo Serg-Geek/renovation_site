@@ -1,0 +1,50 @@
+@use "sass:color";
+
+// Цвета
+$primary-color: #007bff;
+$secondary-color: #6c757d;
+$success-color: #28a745;
+$danger-color: #dc3545;
+$warning-color: #ffc107;
+$info-color: #17a2b8;
+$light-color: #f8f9fa;
+$dark-color: #343a40;
+
+// Салатовые цвета
+$salad-light: #E8F5E9;
+$salad-medium: #C8E6C9;
+$salad-dark: #A5D6A7;
+$salad-pale: #F1F8E9;
+$salad-mint: #DCEDC8;
+$salad-lime: #C5E1A5;
+
+// Градиенты
+$gradient-primary: linear-gradient(135deg, $primary-color, color.adjust($primary-color, $lightness: -10%));
+$gradient-success: linear-gradient(135deg, $success-color, color.adjust($success-color, $lightness: -10%));
+
+// Типографика
+$font-family-base: 'Inter', 'Noto Sans', 'PT Sans', Arial, Helvetica, sans-serif;
+$font-size-base: 1rem;
+$line-height-base: 1.5;
+
+// Заголовки
+$h1-font-size: 2.5rem;
+$h2-font-size: 2rem;
+$h3-font-size: 1.75rem;
+$h4-font-size: 1.5rem;
+$h5-font-size: 1.25rem;
+$h6-font-size: 1rem;
+
+// Отступы
+$spacing-xs: 0.25rem;
+$spacing-sm: 0.5rem;
+$spacing-md: 1rem;
+$spacing-lg: 1.5rem;
+$spacing-xl: 3rem;
+
+// Тени
+$box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+$box-shadow-lg: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+
+// Переходы
+$transition-base: all 0.15s ease-in-out;

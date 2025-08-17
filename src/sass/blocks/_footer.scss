@@ -1,0 +1,17 @@
+@use '../base/variables' as *;
+
+.footer {
+  background: $success-color;
+  color: white;
+  padding: $spacing-lg 0;
+  
+  a {
+    color: $salad-light;
+    text-decoration: none;
+    
+    &:hover {
+      color: white;
+      text-decoration: underline;
+    }
+  }
+}

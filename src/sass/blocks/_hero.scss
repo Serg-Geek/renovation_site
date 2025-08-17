@@ -1,0 +1,23 @@
+@use '../base/variables' as *;
+
+.hero-section {
+  background: $salad-light;
+  padding: $spacing-xl 0;
+  
+  .hero-content {
+    text-align: center;
+    
+    h1 {
+      font-size: $h1-font-size;
+      font-weight: 700;
+      margin-bottom: $spacing-lg;
+      color: $dark-color;
+    }
+    
+    p {
+      font-size: 1.2rem;
+      margin-bottom: $spacing-xl;
+      color: $secondary-color;
+    }
+  }
+}

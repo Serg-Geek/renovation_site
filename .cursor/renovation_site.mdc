@@ -1,0 +1,128 @@
+---
+description: Frontend rules
+globs:
+alwaysApply: true
+---
+
+{
+"$schema": "https://raw.githubusercontent.com/cursor-sh/cursor-rules/main/schema.json",
+"rules": [
+// === SCSS ===
+{
+"description": "Используй SCSS-модули из папок sass/base и sass/blocks в файле style.scss.",
+"pattern": "style.scss",
+"severity": "info"
+},
+{
+"description": "Все новые SCSS-блоки должны находиться в sass/blocks, с именами через дефис (\_имя.scss).",
+"pattern": "sass/blocks/_.scss",
+"severity": "info"
+},
+{
+"description": "Все цвета, размеры и шрифты должны храниться в sass/base/\_variables.scss.",
+"pattern": "sass/\*\*/_.scss",
+"severity": "warning"
+},
+{
+"description": "CSS-классы должны соответствовать БЭМ-неймингу: block\_\_element--modifier.",
+"pattern": "sass/**/_.scss",
+"severity": "warning"
+},
+{
+"description": "Подключай Bootstrap частично (например, reboot) из папки sass/libs.",
+"pattern": "sass/libs/\_bootstrap-reboot.min.scss",
+"severity": "info"
+},
+{
+"description": "Подключай кастомные шрифты из папки fonts через @font-face в base/\_typography.scss.",
+"pattern": "sass/base/\_typography.scss",
+"severity": "info"
+},
+{
+"description": "Все SVG и PNG иконки — из папки icons/_, подключаются через <img> или как background-image в SCSS.",
+"pattern": "sass/**/\*.scss",
+"severity": "info"
+},
+
+    // === HTML ===
+    {
+      "description": "Соблюдай названия шаблонов в формате имя-сущности_тип.html (например, rehab-detail.html).",
+      "pattern": "*.html",
+      "severity": "info"
+    },
+    {
+      "description": "В HTML используй семантические теги (header, footer, main, section, nav).",
+      "pattern": "*.html",
+      "severity": "warning"
+    },
+    {
+      "description": "Все <img> должны содержать атрибут alt.",
+      "pattern": "*.html",
+      "severity": "error"
+    },
+    {
+      "description": "У картинок должен быть loading=\"lazy\".",
+      "pattern": "*.html",
+      "severity": "info"
+    },
+    {
+      "description": "Используй WebP для изображений, если возможно.",
+      "pattern": "*.html",
+      "severity": "info"
+    },
+    {
+      "description": "Используй модальные окна и формы из Bootstrap, не изменяя оригинальные классы.",
+      "pattern": "*.html",
+      "severity": "info"
+    },
+    {
+      "description": "Для слайдеров используй Slick (через CDN или локально).",
+      "pattern": "*.html",
+      "severity": "info"
+    },
+
+    // === JS ===
+    {
+      "description": "JS-логика пишется в js/script.js. Новые модули — через IIFE или ES6-модули.",
+      "pattern": "js/script.js",
+      "severity": "info"
+    },
+    {
+      "description": "Запрещено использовать var. Только let и const.",
+      "pattern": "js/**/*.js",
+      "severity": "error"
+    },
+    {
+      "description": "Используй только addEventListener вместо onclick/onsubmit в HTML.",
+      "pattern": "*.html",
+      "severity": "warning"
+    },
+    {
+      "description": "В JS всегда включай 'use strict'.",
+      "pattern": "js/**/*.js",
+      "severity": "warning"
+    },
+    {
+      "description": "Форматирование JS-кода должно быть единым (рекомендуется Prettier).",
+      "pattern": "js/**/*.js",
+      "severity": "info"
+    },
+
+    // === GIT ===
+    {
+      "description": "Не коммить node_modules, .map файлы и большие изображения >500kb.",
+      "pattern": "*",
+      "severity": "error"
+    },
+    {
+      "description": "Коммиты должны соответствовать Conventional Commits (feat, fix, docs, style, refactor, test, chore).",
+      "pattern": "*",
+      "severity": "error"
+    },
+    {
+      "description": "AI не должен автоматически изменять код. Все изменения — только после моего подтверждения.",
+      "pattern": "*",
+      "severity": "error"
+    }
+
+]

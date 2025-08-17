@@ -5,6 +5,7 @@ const cleanCSS = require("gulp-clean-css");
 const autoprefixer = require("gulp-autoprefixer");
 const rename = require("gulp-rename");
 const htmlmin = require("gulp-htmlmin");
+const imagemin = require("gulp-imagemin");
 const del = require("del");
 
 // Очистка папки dist перед сборкой
@@ -66,12 +67,18 @@ gulp.task("icons", function () {
         .pipe(browserSync.stream());
 });
 
-// Задача для копирования изображений
-gulp.task("images", function () {
-    return gulp
-        .src("src/img/**/*")
-        .pipe(gulp.dest("dist/img"))
-        .pipe(browserSync.stream());
+// Задача для копирования изображений (отключена из-за проблем с повреждением файлов)
+gulp.task("images", function (done) {
+    // Копируем изображения вручную для избежания повреждения файлов
+    const { exec } = require('child_process');
+    exec('mkdir -p dist/img && cp -r src/img/* dist/img/', (error, stdout, stderr) => {
+        if (error) {
+            console.error('Ошибка копирования изображений:', error);
+        } else {
+            console.log('Изображения скопированы успешно');
+        }
+        done();
+    });
 });
 
 // Задача для наблюдения за изменениями

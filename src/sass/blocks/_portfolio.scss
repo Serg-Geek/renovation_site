@@ -1,0 +1,18 @@
+@use '../base/variables' as *;
+
+.portfolio-section {
+  background: $salad-light;
+  padding: $spacing-xl 0;
+  
+  .portfolio-img {
+    height: 150px;
+    object-fit: cover;
+    width: 100%;
+    transition: $transition-base;
+    
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: $box-shadow-lg;
+    }
+  }
+}

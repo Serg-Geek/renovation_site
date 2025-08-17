@@ -1,0 +1,32 @@
+@use '../base/variables' as *;
+
+.services-section {
+  background: $salad-medium;
+  padding: $spacing-xl 0;
+  
+  .card {
+    border: none;
+    box-shadow: $box-shadow;
+    transition: $transition-base;
+    
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: $box-shadow-lg;
+    }
+    
+    .card-img-top {
+      height: 200px;
+      object-fit: cover;
+      width: 100%;
+    }
+    
+    .card-title {
+      color: $dark-color;
+      font-weight: 600;
+    }
+    
+    .card-text {
+      color: $secondary-color;
+    }
+  }
+}

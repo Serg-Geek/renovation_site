@@ -1,1 +1,30 @@
-body { margin: 0; }
+@use 'base/variables' as *;
+@use 'blocks/header';
+@use 'blocks/hero';
+@use 'blocks/services';
+@use 'blocks/portfolio';
+@use 'blocks/about';
+@use 'blocks/contacts';
+@use 'blocks/footer';
+
+// Глобальные стили
+body {
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  color: $dark-color;
+}
+
+// Утилиты
+.text-center {
+  text-align: center;
+}
+
+.mb-4 {
+  margin-bottom: $spacing-lg;
+}
+
+.py-5 {
+  padding-top: $spacing-xl;
+  padding-bottom: $spacing-xl;
+}

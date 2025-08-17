@@ -1,0 +1,57 @@
+@use '../base/variables' as *;
+@use "sass:color";
+
+.about-section {
+  background: $salad-medium;
+  padding: $spacing-xl 0;
+  
+  #testimonialsCarousel {
+    max-width: 600px;
+    margin: 0 auto;
+    
+    .carousel-item {
+      padding: 2rem 0;
+      min-height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .carousel-item:not(.active) {
+      display: none;
+    }
+    
+    .carousel-control-prev,
+    .carousel-control-next {
+      width: 40px;
+      height: 40px;
+      background: rgba($success-color, 0.8);
+      border-radius: 50%;
+      top: 50%;
+      transform: translateY(-50%);
+      
+      &:hover {
+        background: $success-color;
+      }
+    }
+    
+    .carousel-control-prev {
+      left: -50px;
+    }
+    
+    .carousel-control-next {
+      right: -50px;
+    }
+    
+    .blockquote {
+      border-left: 4px solid $success-color;
+      padding-left: $spacing-lg;
+      margin: 0;
+      
+      .blockquote-footer {
+        color: $secondary-color;
+        font-style: italic;
+      }
+    }
+  }
+}
