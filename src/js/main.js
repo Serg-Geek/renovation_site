@@ -16,6 +16,9 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Инициализация формы контактов
   initContactForm();
+  
+  // Инициализация анимаций для секции услуг
+  initServicesAnimations();
 });
 
 // Анимации для секции контактов
@@ -269,4 +272,57 @@ function showFormSuccess(message) {
     alertDiv.style.transform = 'translateY(-10px)';
     setTimeout(() => alertDiv.remove(), 300);
   }, 8000);
+}
+
+// Анимации для секции услуг
+function initServicesAnimations() {
+  const serviceItems = document.querySelectorAll('.service-item');
+  
+  // Анимация появления элементов при скролле
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0) scale(1)';
+        }, index * 150); // Задержка для каскадного эффекта
+      }
+    });
+  }, observerOptions);
+  
+  // Наблюдаем за карточками услуг
+  serviceItems.forEach((item, index) => {
+    item.style.opacity = '0';
+    item.style.transform = 'translateY(30px) scale(0.95)';
+    item.style.transition = 'opacity 0.8s ease, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+    observer.observe(item);
+  });
+  
+  // Добавляем эффект "волны" при клике
+  serviceItems.forEach(item => {
+    item.addEventListener('click', function(e) {
+      // Создаем эффект волны
+      const ripple = document.createElement('span');
+      const rect = this.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height);
+      const x = e.clientX - rect.left - size / 2;
+      const y = e.clientY - rect.top - size / 2;
+      
+      ripple.style.width = ripple.style.height = size + 'px';
+      ripple.style.left = x + 'px';
+      ripple.style.top = y + 'px';
+      ripple.classList.add('ripple');
+      
+      this.appendChild(ripple);
+      
+      setTimeout(() => {
+        ripple.remove();
+      }, 600);
+    });
+  });
 }

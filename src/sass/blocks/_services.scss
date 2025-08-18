@@ -1,8 +1,28 @@
 @use '../base/variables' as *;
+@use "sass:color";
 
 .services-section {
-  background: $salad-medium;
+  background: linear-gradient(135deg, $salad-medium 0%, color.adjust($salad-medium, $lightness: 5%) 100%);
   padding: $spacing-xl 0;
+  position: relative;
+  
+  // Декоративные элементы
+  &::before {
+    content: '';
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba($success-color, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+  }
+  
+  .container {
+    position: relative;
+    z-index: 1;
+  }
   
   .service-category {
     .category-title {
@@ -13,36 +33,134 @@
       padding-bottom: 0.5rem;
       border-bottom: 3px solid $success-color;
       display: inline-block;
+      position: relative;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(90deg, $success-color, $primary-color);
+        border-radius: 2px;
+      }
     }
     
     .service-item {
-      background: white;
-      border-radius: 10px;
-      padding: 1.5rem;
+      background: linear-gradient(135deg, white 0%, color.adjust(white, $lightness: -2%) 100%);
+      border-radius: 15px;
+      padding: 2rem 1.5rem;
       text-align: center;
-      box-shadow: $box-shadow;
-      transition: $transition-base;
+      box-shadow: 
+        0 4px 15px rgba($dark-color, 0.08),
+        0 2px 8px rgba($dark-color, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       height: 100%;
       border: 2px solid transparent;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      
+      // Декоративный элемент внутри карточки
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba($success-color, 0.1), transparent);
+        transition: left 0.6s ease;
+      }
       
       &:hover {
-        transform: translateY(-5px);
-        box-shadow: $box-shadow-lg;
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 
+          0 20px 40px rgba($dark-color, 0.15),
+          0 10px 25px rgba($success-color, 0.2),
+          0 5px 15px rgba($dark-color, 0.1),
+          inset 0 1px 0 rgba(255, 255, 255, 0.9);
         border-color: $success-color;
+        
+        &::before {
+          left: 100%;
+        }
+        
+        .service-icon {
+          transform: scale(1.1) rotate(5deg);
+          color: $success-color;
+        }
+        
+        h5 {
+          color: $success-color;
+        }
+      }
+      
+      &:active {
+        transform: translateY(-4px) scale(1.01);
+        transition: all 0.1s ease;
       }
       
       .service-icon {
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
+        font-size: 2.8rem;
+        margin-bottom: 1.2rem;
         display: block;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        filter: drop-shadow(0 2px 4px rgba($dark-color, 0.1));
       }
       
       h5 {
         color: $dark-color;
-        font-size: 1rem;
+        font-size: 1.1rem;
         font-weight: 600;
         margin: 0;
         line-height: 1.4;
+        transition: color 0.3s ease;
+        position: relative;
+        z-index: 1;
+      }
+    }
+  }
+}
+
+// Эффект волны при клике
+.service-item {
+  .ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba($success-color, 0.3);
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+    pointer-events: none;
+  }
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+// Адаптивность
+@media (max-width: 767.98px) {
+  .services-section {
+    padding: $spacing-lg 0;
+    
+    .service-category {
+      .service-item {
+        padding: 1.5rem 1rem;
+        
+        .service-icon {
+          font-size: 2.2rem;
+          margin-bottom: 1rem;
+        }
+        
+        h5 {
+          font-size: 1rem;
+        }
       }
     }
   }
