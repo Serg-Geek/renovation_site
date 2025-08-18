@@ -326,33 +326,72 @@
         <h2 class="mb-4 text-center">О компании</h2>
         <p class="text-center">10 лет на рынке, гарантия 2 года. Работаем по договору. Бесплатная консультация и выезд специалиста.</p>
         <!-- Отзывы -->
-        <div id="testimonialsCarousel" class="carousel slide">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <div class="text-center">
-                <blockquote class="blockquote">
-                  <p class="mb-3">Все сделали быстро и качественно! Рекомендую.</p>
-                  <footer class="blockquote-footer">Иван П.</footer>
-                </blockquote>
+        <div class="testimonials-section">
+          <h3 class="text-center mb-5">Отзывы наших клиентов</h3>
+          
+          <div class="testimonials-container">
+                         <div class="testimonial-card active" data-index="0">
+               <div class="testimonial-header">
+                 <div class="client-info">
+                   <h5 class="client-name">Иван Петров</h5>
+                   <span class="review-date">15.08.2024</span>
+                 </div>
+               </div>
+              <div class="testimonial-content">
+                <p class="testimonial-text">"Все сделали быстро и качественно! Команда очень профессиональная, помогли с выбором материалов и цветов. Ремонт выполнен в срок, все аккуратно и чисто. Рекомендую всем!"</p>
+                <div class="project-info">
+                  <span class="project-type">Косметический ремонт квартиры</span>
+                </div>
               </div>
             </div>
-            <div class="carousel-item">
-              <div class="text-center">
-                <blockquote class="blockquote">
-                  <p class="mb-3">Отличная команда, помогли с выбором материалов.</p>
-                  <footer class="blockquote-footer">Мария К.</footer>
-                </blockquote>
+            
+                         <div class="testimonial-card" data-index="1">
+               <div class="testimonial-header">
+                 <div class="client-info">
+                   <h5 class="client-name">Мария Козлова</h5>
+                   <span class="review-date">10.08.2024</span>
+                 </div>
+               </div>
+              <div class="testimonial-content">
+                <p class="testimonial-text">"Отличная команда! Помогли с выбором материалов, дали много полезных советов. Работают аккуратно, убирают за собой. Цена соответствует качеству. Очень довольна результатом!"</p>
+                <div class="project-info">
+                  <span class="project-type">Ремонт кухни</span>
+                </div>
+              </div>
+            </div>
+            
+                         <div class="testimonial-card" data-index="2">
+               <div class="testimonial-header">
+                 <div class="client-info">
+                   <h5 class="client-name">Александр Сидоров</h5>
+                   <span class="review-date">05.08.2024</span>
+                 </div>
+               </div>
+              <div class="testimonial-content">
+                <p class="testimonial-text">"Делали капитальный ремонт в двухкомнатной квартире. Работали качественно, соблюдали все сроки. Мастера вежливые и профессиональные. Результат превзошел ожидания!"</p>
+                <div class="project-info">
+                  <span class="project-type">Капитальный ремонт</span>
+                </div>
               </div>
             </div>
           </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#testimonialsCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Предыдущий</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#testimonialsCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Следующий</span>
-          </button>
+          
+          <!-- Индикаторы прогресса -->
+          <div class="testimonials-indicators">
+            <div class="indicator active" data-index="0"></div>
+            <div class="indicator" data-index="1"></div>
+            <div class="indicator" data-index="2"></div>
+          </div>
+          
+                     <!-- Кнопки навигации -->
+           <div class="testimonials-nav">
+             <button class="nav-btn prev-btn" type="button" onclick="return false;">
+               <i class="bi bi-chevron-left"></i>
+             </button>
+             <button class="nav-btn next-btn" type="button" onclick="return false;">
+               <i class="bi bi-chevron-right"></i>
+             </button>
+           </div>
         </div>
       </div>
     </section>

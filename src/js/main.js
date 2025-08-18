@@ -1,15 +1,7 @@
 console.log("main.js loaded");
 
-// Инициализация карусели отзывов
+// Инициализация при загрузке страницы
 document.addEventListener('DOMContentLoaded', function() {
-  const testimonialsCarousel = document.getElementById('testimonialsCarousel');
-  if (testimonialsCarousel) {
-    const carousel = new bootstrap.Carousel(testimonialsCarousel, {
-      interval: 4000, // Интервал автопрокрутки (4 секунды)
-      wrap: true,     // Зацикливание
-      keyboard: false // Отключить управление с клавиатуры
-    });
-  }
   
   // Инициализация анимаций для секции контактов
   initContactAnimations();
@@ -19,6 +11,9 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Инициализация анимаций для секции услуг
   initServicesAnimations();
+  
+  // Инициализация отзывов
+  initTestimonials();
 });
 
 // Анимации для секции контактов
@@ -325,4 +320,144 @@ function initServicesAnimations() {
       }, 600);
     });
   });
+}
+
+// Инициализация отзывов
+function initTestimonials() {
+  const testimonialCards = document.querySelectorAll('.testimonial-card');
+  const indicators = document.querySelectorAll('.testimonials-indicators .indicator');
+  const prevBtn = document.querySelector('.prev-btn');
+  const nextBtn = document.querySelector('.next-btn');
+  
+  // Проверяем, что элементы найдены
+  if (testimonialCards.length === 0) {
+    console.log('Testimonial cards not found');
+    return;
+  }
+  
+  console.log('Found testimonial cards:', testimonialCards.length);
+  console.log('Found indicators:', indicators.length);
+  console.log('Found prev button:', !!prevBtn);
+  console.log('Found next button:', !!nextBtn);
+  
+  let currentIndex = 0;
+  let isAnimating = false;
+  
+  // Функция для показа отзыва
+  function showTestimonial(index) {
+    if (isAnimating) return;
+    isAnimating = true;
+    
+    // Определяем направление анимации
+    const direction = index > currentIndex ? 1 : -1;
+    
+    // Убираем активный класс со всех карточек и индикаторов
+    testimonialCards.forEach(card => {
+      card.classList.remove('active');
+      card.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+    });
+    indicators.forEach(indicator => indicator.classList.remove('active'));
+    
+    // Анимация исчезновения текущей карточки
+    if (testimonialCards[currentIndex]) {
+      testimonialCards[currentIndex].style.opacity = '0';
+      testimonialCards[currentIndex].style.transform = `translateX(${-50 * direction}px) scale(0.9)`;
+    }
+    
+    // Подготавливаем новую карточку
+    testimonialCards[index].style.opacity = '0';
+    testimonialCards[index].style.transform = `translateX(${50 * direction}px) scale(0.9)`;
+    
+    // Добавляем активный класс к новой карточке и индикатору
+    testimonialCards[index].classList.add('active');
+    indicators[index].classList.add('active');
+    
+    // Анимация появления новой карточки
+    setTimeout(() => {
+      testimonialCards[index].style.opacity = '1';
+      testimonialCards[index].style.transform = 'translateX(0) scale(1)';
+      
+      setTimeout(() => {
+        isAnimating = false;
+      }, 600);
+    }, 100);
+    
+    currentIndex = index;
+  }
+  
+  // Обработчики для кнопок навигации
+  if (prevBtn) {
+    prevBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const newIndex = currentIndex > 0 ? currentIndex - 1 : testimonialCards.length - 1;
+      showTestimonial(newIndex);
+    });
+  }
+  
+  if (nextBtn) {
+    nextBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const newIndex = currentIndex < testimonialCards.length - 1 ? currentIndex + 1 : 0;
+      showTestimonial(newIndex);
+    });
+  }
+  
+  // Обработчики для индикаторов
+  indicators.forEach((indicator, index) => {
+    indicator.addEventListener('click', () => {
+      if (index !== currentIndex) {
+        showTestimonial(index);
+      }
+    });
+  });
+  
+  // Автоматическое переключение каждые 5 секунд
+  let autoPlayInterval = setInterval(() => {
+    const newIndex = currentIndex < testimonialCards.length - 1 ? currentIndex + 1 : 0;
+    showTestimonial(newIndex);
+  }, 5000);
+  
+  // Останавливаем автопереключение при наведении
+  const testimonialsContainer = document.querySelector('.testimonials-container');
+  if (testimonialsContainer) {
+    testimonialsContainer.addEventListener('mouseenter', () => {
+      clearInterval(autoPlayInterval);
+    });
+    
+    testimonialsContainer.addEventListener('mouseleave', () => {
+      autoPlayInterval = setInterval(() => {
+        const newIndex = currentIndex < testimonialCards.length - 1 ? currentIndex + 1 : 0;
+        showTestimonial(newIndex);
+      }, 5000);
+    });
+  }
+  
+  // Анимация появления при скролле
+  const observerOptions = {
+    threshold: 0.3,
+    rootMargin: '0px 0px -50px 0px'
+  };
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const testimonialsSection = entry.target;
+        testimonialsSection.style.opacity = '0';
+        testimonialsSection.style.transform = 'translateY(30px)';
+        testimonialsSection.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        
+        setTimeout(() => {
+          testimonialsSection.style.opacity = '1';
+          testimonialsSection.style.transform = 'translateY(0)';
+        }, 200);
+        
+        observer.unobserve(testimonialsSection);
+      }
+    });
+  }, observerOptions);
+  
+  const testimonialsSection = document.querySelector('.testimonials-section');
+  if (testimonialsSection) {
+    observer.observe(testimonialsSection);
+  }
 }
