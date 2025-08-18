@@ -9,10 +9,20 @@
     object-fit: cover;
     width: 100%;
     transition: $transition-base;
+  }
+  
+  .portfolio-link {
+    display: block;
+    text-decoration: none;
+    transition: $transition-base;
     
     &:hover {
       transform: scale(1.05);
       box-shadow: $box-shadow-lg;
+    }
+    
+    &:hover .portfolio-img {
+      filter: brightness(1.1);
     }
   }
 }

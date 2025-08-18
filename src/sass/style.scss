@@ -8,11 +8,17 @@
 @use 'blocks/footer';
 
 // Глобальные стили
+html, body {
+  overflow-x: hidden;
+}
+
 body {
   font-family: $font-family-base;
   font-size: $font-size-base;
   line-height: $line-height-base;
   color: $dark-color;
+  margin: 0;
+  padding: 0;
 }
 
 // Утилиты

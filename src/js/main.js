@@ -10,4 +10,263 @@ document.addEventListener('DOMContentLoaded', function() {
       keyboard: false // Отключить управление с клавиатуры
     });
   }
+  
+  // Инициализация анимаций для секции контактов
+  initContactAnimations();
+  
+  // Инициализация формы контактов
+  initContactForm();
 });
+
+// Анимации для секции контактов
+function initContactAnimations() {
+  const contactItems = document.querySelectorAll('.contact-item');
+  const contactForm = document.querySelector('.contact-form-wrapper');
+  
+  // Анимация появления элементов при скролле
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }, index * 100);
+      }
+    });
+  }, observerOptions);
+  
+  // Наблюдаем за контактными элементами
+  contactItems.forEach((item, index) => {
+    item.style.opacity = '0';
+    item.style.transform = 'translateY(20px)';
+    item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(item);
+  });
+  
+  // Наблюдаем за формой
+  if (contactForm) {
+    contactForm.style.opacity = '0';
+    contactForm.style.transform = 'translateY(30px)';
+    contactForm.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+    observer.observe(contactForm);
+  }
+  
+  // Убираем эффект параллакса, который может вызывать проблемы с позиционированием
+  // window.addEventListener('scroll', () => {
+  //   const scrolled = window.pageYOffset;
+  //   const contactsSection = document.querySelector('.contacts-section');
+  //   
+  //   if (contactsSection) {
+  //     const rect = contactsSection.getBoundingClientRect();
+  //     if (rect.top < window.innerHeight && rect.bottom > 0) {
+  //       const parallax = scrolled * 0.1;
+  //       contactsSection.style.transform = `translateY(${parallax}px)`;
+  //     }
+  //   }
+  // });
+}
+
+// Инициализация формы контактов
+function initContactForm() {
+  const form = document.getElementById('form');
+  if (!form) return;
+  
+  // Валидация в реальном времени
+  const inputs = form.querySelectorAll('input, textarea');
+  inputs.forEach(input => {
+    input.addEventListener('blur', validateField);
+    input.addEventListener('input', clearFieldError);
+  });
+  
+  // Обработка отправки формы
+  form.addEventListener('submit', handleFormSubmit);
+  
+  // Анимация кнопки при фокусе на полях
+  const submitBtn = form.querySelector('button[type="submit"]');
+  inputs.forEach(input => {
+    input.addEventListener('focus', () => {
+      submitBtn.style.transform = 'scale(1.02)';
+    });
+    
+    input.addEventListener('blur', () => {
+      submitBtn.style.transform = 'scale(1)';
+    });
+  });
+}
+
+// Валидация поля
+function validateField(event) {
+  const field = event.target;
+  const value = field.value.trim();
+  const fieldName = field.name;
+  
+  // Удаляем предыдущие ошибки
+  clearFieldError(event);
+  
+  let isValid = true;
+  let errorMessage = '';
+  
+  switch (fieldName) {
+    case 'name':
+      if (value.length < 2) {
+        isValid = false;
+        errorMessage = 'Имя должно содержать минимум 2 символа';
+      }
+      break;
+      
+    case 'phone':
+      const phoneRegex = /^\+7\s?\(\d{3}\)\s?\d{3}-\d{2}-\d{2}$/;
+      if (!phoneRegex.test(value)) {
+        isValid = false;
+        errorMessage = 'Введите корректный номер телефона';
+      }
+      break;
+      
+    case 'message':
+      if (value.length < 10) {
+        isValid = false;
+        errorMessage = 'Сообщение должно содержать минимум 10 символов';
+      }
+      break;
+  }
+  
+  if (!isValid) {
+    showFieldError(field, errorMessage);
+  }
+  
+  return isValid;
+}
+
+// Показать ошибку поля
+function showFieldError(field, message) {
+  field.classList.add('is-invalid');
+  
+  // Создаем элемент с ошибкой
+  const errorDiv = document.createElement('div');
+  errorDiv.className = 'invalid-feedback';
+  errorDiv.textContent = message;
+  
+  // Добавляем после поля
+  field.parentNode.appendChild(errorDiv);
+  
+  // Анимация появления ошибки
+  errorDiv.style.opacity = '0';
+  errorDiv.style.transform = 'translateY(-10px)';
+  
+  setTimeout(() => {
+    errorDiv.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+    errorDiv.style.opacity = '1';
+    errorDiv.style.transform = 'translateY(0)';
+  }, 10);
+}
+
+// Очистить ошибку поля
+function clearFieldError(event) {
+  const field = event.target;
+  field.classList.remove('is-invalid');
+  
+  const errorDiv = field.parentNode.querySelector('.invalid-feedback');
+  if (errorDiv) {
+    errorDiv.style.opacity = '0';
+    errorDiv.style.transform = 'translateY(-10px)';
+    setTimeout(() => {
+      errorDiv.remove();
+    }, 300);
+  }
+}
+
+// Обработка отправки формы
+function handleFormSubmit(event) {
+  event.preventDefault();
+  
+  const form = event.target;
+  const inputs = form.querySelectorAll('input, textarea');
+  let isValid = true;
+  
+  // Валидируем все поля
+  inputs.forEach(input => {
+    if (!validateField({ target: input })) {
+      isValid = false;
+    }
+  });
+  
+  if (!isValid) {
+    // Показываем общую ошибку
+    showFormError('Пожалуйста, исправьте ошибки в форме');
+    return;
+  }
+  
+  // Анимация отправки
+  const submitBtn = form.querySelector('button[type="submit"]');
+  const originalText = submitBtn.innerHTML;
+  
+  submitBtn.innerHTML = '<i class="bi bi-hourglass-split"></i> Отправляем...';
+  submitBtn.disabled = true;
+  
+  // Имитация отправки (замените на реальную отправку)
+  setTimeout(() => {
+    showFormSuccess('Спасибо! Ваша заявка отправлена. Мы свяжемся с вами в течение 30 минут.');
+    form.reset();
+    submitBtn.innerHTML = originalText;
+    submitBtn.disabled = false;
+  }, 2000);
+}
+
+// Показать ошибку формы
+function showFormError(message) {
+  const form = document.getElementById('form');
+  const alertDiv = document.createElement('div');
+  alertDiv.className = 'alert alert-danger mt-3';
+  alertDiv.innerHTML = `<i class="bi bi-exclamation-triangle"></i> ${message}`;
+  
+  form.appendChild(alertDiv);
+  
+  // Анимация появления
+  alertDiv.style.opacity = '0';
+  alertDiv.style.transform = 'translateY(-10px)';
+  
+  setTimeout(() => {
+    alertDiv.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+    alertDiv.style.opacity = '1';
+    alertDiv.style.transform = 'translateY(0)';
+  }, 10);
+  
+  // Автоматическое удаление через 5 секунд
+  setTimeout(() => {
+    alertDiv.style.opacity = '0';
+    alertDiv.style.transform = 'translateY(-10px)';
+    setTimeout(() => alertDiv.remove(), 300);
+  }, 5000);
+}
+
+// Показать успешную отправку
+function showFormSuccess(message) {
+  const form = document.getElementById('form');
+  const alertDiv = document.createElement('div');
+  alertDiv.className = 'alert alert-success mt-3';
+  alertDiv.innerHTML = `<i class="bi bi-check-circle"></i> ${message}`;
+  
+  form.appendChild(alertDiv);
+  
+  // Анимация появления
+  alertDiv.style.opacity = '0';
+  alertDiv.style.transform = 'translateY(-10px)';
+  
+  setTimeout(() => {
+    alertDiv.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+    alertDiv.style.opacity = '1';
+    alertDiv.style.transform = 'translateY(0)';
+  }, 10);
+  
+  // Автоматическое удаление через 8 секунд
+  setTimeout(() => {
+    alertDiv.style.opacity = '0';
+    alertDiv.style.transform = 'translateY(-10px)';
+    setTimeout(() => alertDiv.remove(), 300);
+  }, 8000);
+}
