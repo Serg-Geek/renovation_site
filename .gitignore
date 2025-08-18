@@ -29,4 +29,7 @@ logs/
 # Other
 .idea/ 
 docs/
-.cursorrules 
+.cursorrules
+
+# Cursor
+.cursor/ 
