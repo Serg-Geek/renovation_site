@@ -14,6 +14,12 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Инициализация отзывов
   initTestimonials();
+  
+  // Инициализация масок для телефонов
+  initPhoneMasks();
+  
+  // Инициализация SimpleLightbox для портфолио
+  initSimpleLightbox();
 });
 
 // Анимации для секции контактов
@@ -460,4 +466,34 @@ function initTestimonials() {
   if (testimonialsSection) {
     observer.observe(testimonialsSection);
   }
+}
+
+// Инициализация масок для телефонов
+function initPhoneMasks() {
+  const phoneInputs = document.querySelectorAll('input[type="tel"]');
+  phoneInputs.forEach(input => {
+    IMask(input, {
+      mask: '+{7} (000) 000-00-00'
+    });
+  });
+}
+
+// Инициализация SimpleLightbox для портфолио
+function initSimpleLightbox() {
+  document.addEventListener('DOMContentLoaded', function() {
+    new SimpleLightbox('#portfolio-gallery .portfolio-link', {
+      captions: true,
+      captionSelector: 'img',
+      captionType: 'attr',
+      captionsData: 'alt',
+      captionPosition: 'bottom',
+      animationSpeed: 250,
+      fadeSpeed: 300,
+      overlayOpacity: 0.9,
+      showCounter: true,
+      swipeClose: true,
+      closeOnOverlayClick: true,
+      closeOnEscape: true
+    });
+  });
 }

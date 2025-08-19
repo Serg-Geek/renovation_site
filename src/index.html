@@ -542,32 +542,5 @@
   <script src="https://unpkg.com/imask"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.14.2/simple-lightbox.min.js"></script>
   <script src="./js/main.js"></script>
-  <script>
-    // Маска для телефона
-    const phoneInputs = document.querySelectorAll('input[type="tel"]');
-    phoneInputs.forEach(input => {
-      IMask(input, {
-        mask: '+{7} (000) 000-00-00'
-      });
-    });
-
-    // Инициализация SimpleLightbox для портфолио
-    document.addEventListener('DOMContentLoaded', function() {
-      new SimpleLightbox('#portfolio-gallery .portfolio-link', {
-        captions: true,
-        captionSelector: 'img',
-        captionType: 'attr',
-        captionsData: 'alt',
-        captionPosition: 'bottom',
-        animationSpeed: 250,
-        fadeSpeed: 300,
-        overlayOpacity: 0.9,
-        showCounter: true,
-        swipeClose: true,
-        closeOnOverlayClick: true,
-        closeOnEscape: true
-      });
-    });
-  </script>
 </body>
 </html> 
