@@ -77,30 +77,46 @@ function initContactAnimations() {
 
 // Инициализация формы контактов
 function initContactForm() {
-  const form = document.getElementById('form');
-  if (!form) return;
+  const contactForm = document.getElementById('form');
+  const callbackForm = document.getElementById('callbackForm');
   
-  // Валидация в реальном времени
-  const inputs = form.querySelectorAll('input, textarea');
-  inputs.forEach(input => {
-    input.addEventListener('blur', validateField);
-    input.addEventListener('input', clearFieldError);
-  });
-  
-  // Обработка отправки формы
-  form.addEventListener('submit', handleFormSubmit);
-  
-  // Анимация кнопки при фокусе на полях
-  const submitBtn = form.querySelector('button[type="submit"]');
-  inputs.forEach(input => {
-    input.addEventListener('focus', () => {
-      submitBtn.style.transform = 'scale(1.02)';
+  // Инициализация основной формы контактов
+  if (contactForm) {
+    // Валидация в реальном времени
+    const inputs = contactForm.querySelectorAll('input, textarea');
+    inputs.forEach(input => {
+      input.addEventListener('blur', validateField);
+      input.addEventListener('input', clearFieldError);
     });
     
-    input.addEventListener('blur', () => {
-      submitBtn.style.transform = 'scale(1)';
+    // Обработка отправки формы
+    contactForm.addEventListener('submit', handleFormSubmit);
+    
+    // Анимация кнопки при фокусе на полях
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+    inputs.forEach(input => {
+      input.addEventListener('focus', () => {
+        submitBtn.style.transform = 'scale(1.02)';
+      });
+      
+      input.addEventListener('blur', () => {
+        submitBtn.style.transform = 'scale(1)';
+      });
     });
-  });
+  }
+  
+  // Инициализация модальной формы обратного звонка
+  if (callbackForm) {
+    // Валидация в реальном времени
+    const inputs = callbackForm.querySelectorAll('input, textarea');
+    inputs.forEach(input => {
+      input.addEventListener('blur', validateField);
+      input.addEventListener('input', clearFieldError);
+    });
+    
+    // Обработка отправки формы
+    callbackForm.addEventListener('submit', handleFormSubmit);
+  }
 }
 
 // Валидация поля
@@ -185,41 +201,53 @@ function clearFieldError(event) {
 }
 
 // Обработка отправки формы
-function handleFormSubmit(event) {
+async function handleFormSubmit(event) {
   event.preventDefault();
   
   const form = event.target;
-  const inputs = form.querySelectorAll('input, textarea');
-  let isValid = true;
-  
-  // Валидируем все поля
-  inputs.forEach(input => {
-    if (!validateField({ target: input })) {
-      isValid = false;
-    }
-  });
-  
-  if (!isValid) {
-    // Показываем общую ошибку
-    showFormError('Пожалуйста, исправьте ошибки в форме');
-    return;
-  }
-  
-  // Анимация отправки
   const submitBtn = form.querySelector('button[type="submit"]');
   const originalText = submitBtn.innerHTML;
   
-  submitBtn.innerHTML = '<i class="bi bi-hourglass-split"></i> Отправляем...';
+  // Блокируем кнопку и показываем загрузку
   submitBtn.disabled = true;
+  submitBtn.innerHTML = '<i class="bi bi-hourglass-split"></i> Отправка...';
   
-  // Имитация отправки (замените на реальную отправку)
-  setTimeout(() => {
-    showFormSuccess('Спасибо! Ваша заявка отправлена. Мы свяжемся с вами в течение 30 минут.');
-    form.reset();
-    submitBtn.innerHTML = originalText;
+  try {
+    const formData = new FormData(form);
+    
+    const response = await fetch(form.action, {
+      method: 'POST',
+      body: formData
+    });
+    
+    const result = await response.json();
+    
+    if (result.success) {
+      // Успешная отправка
+      showNotification(result.message, 'success');
+      form.reset();
+      
+      // Закрываем модальное окно, если это форма обратного звонка
+      if (form.id === 'callbackForm') {
+        const modal = bootstrap.Modal.getInstance(document.getElementById('callbackModal'));
+        if (modal) {
+          modal.hide();
+        }
+      }
+    } else {
+      // Ошибки валидации
+      showNotification(result.errors.join('<br>'), 'error');
+    }
+  } catch (error) {
+    // Ошибка сети или сервера
+    showNotification('Произошла ошибка при отправке. Попробуйте позже.', 'error');
+    console.error('Form submission error:', error);
+  } finally {
+    // Восстанавливаем кнопку
     submitBtn.disabled = false;
-  }, 2000);
-}
+    submitBtn.innerHTML = originalText;
+  }
+
 
 // Показать ошибку формы
 function showFormError(message) {
@@ -497,3 +525,130 @@ function initSimpleLightbox() {
     });
   });
 }
+
+// Инициализация обработки форм
+function initContactForm() {
+  const contactForm = document.getElementById('form');
+  const callbackForm = document.getElementById('callbackForm');
+  
+  if (contactForm) {
+    contactForm.addEventListener('submit', handleFormSubmit);
+  }
+  
+  if (callbackForm) {
+    callbackForm.addEventListener('submit', handleFormSubmit);
+  }
+}
+
+// Обработка отправки формы
+async function handleFormSubmit(e) {
+  e.preventDefault();
+  
+  const form = e.target;
+  const submitBtn = form.querySelector('button[type="submit"]');
+  const originalText = submitBtn.innerHTML;
+  
+  // Блокируем кнопку и показываем загрузку
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = '<i class="bi bi-hourglass-split"></i> Отправка...';
+  
+  try {
+    const formData = new FormData(form);
+    
+    const response = await fetch(form.action, {
+      method: 'POST',
+      body: formData
+    });
+    
+    const result = await response.json();
+    
+    if (result.success) {
+      // Успешная отправка
+      showNotification(result.message, 'success');
+      form.reset();
+      
+      // Закрываем модальное окно, если это форма обратного звонка
+      if (form.id === 'callbackForm') {
+        const modal = bootstrap.Modal.getInstance(document.getElementById('callbackModal'));
+        if (modal) {
+          modal.hide();
+        }
+      }
+    } else {
+      // Ошибки валидации
+      showNotification(result.errors.join('<br>'), 'error');
+    }
+  } catch (error) {
+    // Ошибка сети или сервера
+    showNotification('Произошла ошибка при отправке. Попробуйте позже.', 'error');
+    console.error('Form submission error:', error);
+  } finally {
+    // Восстанавливаем кнопку
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = originalText;
+  }
+}
+
+// Показ уведомлений
+function showNotification(message, type = 'info') {
+  // Удаляем существующие уведомления
+  const existingNotifications = document.querySelectorAll('.notification');
+  existingNotifications.forEach(notification => notification.remove());
+  
+  // Создаем новое уведомление
+  const notification = document.createElement('div');
+  notification.className = `notification notification-${type}`;
+  notification.innerHTML = `
+    <div class="notification-content">
+      <i class="bi bi-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-triangle' : 'info-circle'}"></i>
+      <span>${message}</span>
+      <button class="notification-close" onclick="this.parentElement.parentElement.remove()">
+        <i class="bi bi-x"></i>
+      </button>
+    </div>
+  `;
+  
+  // Добавляем стили
+  notification.style.cssText = `
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    max-width: 400px;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    background: ${type === 'success' ? '#d4edda' : type === 'error' ? '#f8d7da' : '#d1ecf1'};
+    color: ${type === 'success' ? '#155724' : type === 'error' ? '#721c24' : '#0c5460'};
+    border: 1px solid ${type === 'success' ? '#c3e6cb' : type === 'error' ? '#f5c6cb' : '#bee5eb'};
+    animation: slideInRight 0.3s ease-out;
+  `;
+  
+  // Добавляем в DOM
+  document.body.appendChild(notification);
+  
+  // Автоматически удаляем через 5 секунд
+  setTimeout(() => {
+    if (notification.parentElement) {
+      notification.remove();
+    }
+  }, 5000);
+}
+
+
+
+// Добавляем CSS анимацию для уведомлений
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes slideInRight {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+`;
+document.head.appendChild(style);

@@ -2,7 +2,7 @@
 @use "sass:color";
 
 .about-section {
-  background: linear-gradient(135deg, $salad-medium 0%, color.adjust($salad-medium, $lightness: 5%) 100%);
+  background: $salad-bright;
   padding: $spacing-xl 0;
   position: relative;
   

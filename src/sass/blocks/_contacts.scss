@@ -277,6 +277,19 @@
       margin-right: 0.5rem;
     }
   }
+  
+  .form-footer {
+    a {
+      color: $success-color;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      
+      &:hover {
+        color: $primary-color;
+        text-decoration: underline;
+      }
+    }
+  }
 }
 
 // Адаптивность

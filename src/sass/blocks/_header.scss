@@ -2,17 +2,10 @@
 @use "sass:color";
 
 .navbar {
-  background: $success-color;
+  background: $salad-dark;
   box-shadow: $box-shadow;
   
-  .navbar-brand {
-    color: white;
-    font-weight: 700;
-    
-    &:hover {
-      color: $salad-dark;
-    }
-  }
+  // Убираем стили для .navbar-brand, так как мы его удалили из HTML
   
   .nav-link {
     color: white;
@@ -49,7 +42,70 @@
   }
 }
 
-.navbar-logo {
-  height: 40px;
-  width: auto;
+.company-info {
+  text-align: left !important;
+  line-height: 1.2 !important;
+  border: 2px solid $dark-color !important;
+  padding: 0.5rem 0.75rem !important;
+  border-radius: 8px !important;
+  background: linear-gradient(135deg, $salad-lime 0%, $salad-pale 100%) !important;
+  display: block !important;
+  text-decoration: none !important;
+  
+  .company-name {
+    font-size: 1.1rem !important;
+    font-weight: 700 !important;
+    color: $dark-color !important;
+    margin-bottom: 0.2rem !important;
+    font-family: 'Georgia', 'Times New Roman', serif !important;
+  }
+  
+  .company-ogrn {
+    font-size: 0.8rem !important;
+    font-weight: 400 !important;
+    color: $dark-color !important;
+    line-height: 1 !important;
+    font-family: 'Roboto', sans-serif !important;
+  }
+  
+  &:hover {
+    background: linear-gradient(135deg, $salad-pale 0%, $salad-mint 100%) !important;
+    
+    .company-name {
+      color: $success-color !important;
+    }
+    
+    .company-ogrn {
+      color: $dark-color !important;
+    }
+    
+    border-color: $success-color !important;
+    box-shadow: 0 4px 12px rgba($success-color, 0.4) !important;
+    transform: translateY(-1px) !important;
+  }
+}
+
+// Адаптивность
+@media (max-width: 767.98px) {
+  .company-info {
+    .company-name {
+      font-size: 1rem !important;
+    }
+    
+    .company-ogrn {
+      font-size: 0.75rem !important;
+    }
+  }
+}
+
+@media (max-width: 575.98px) {
+  .company-info {
+    .company-name {
+      font-size: 0.9rem !important;
+    }
+    
+    .company-ogrn {
+      font-size: 0.7rem !important;
+    }
+  }
 }

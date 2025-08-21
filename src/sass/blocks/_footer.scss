@@ -2,7 +2,7 @@
 @use "sass:color";
 
 .footer {
-  background: linear-gradient(135deg, $success-color, color.adjust($success-color, $lightness: -10%));
+  background: $salad-dark;
   color: white;
   padding: $spacing-lg 0;
   box-shadow: 0 -4px 20px rgba($success-color, 0.3);

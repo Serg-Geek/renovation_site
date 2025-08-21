@@ -25,7 +25,7 @@ $gradient-primary: linear-gradient(135deg, $primary-color, color.adjust($primary
 $gradient-success: linear-gradient(135deg, $success-color, color.adjust($success-color, $lightness: -10%));
 
 // Типографика
-$font-family-base: 'Inter', 'Noto Sans', 'PT Sans', Arial, Helvetica, sans-serif;
+$font-family-base: 'Roboto', Arial, Helvetica, sans-serif;
 $font-size-base: 1rem;
 $line-height-base: 1.5;
 
