@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  
+  <!-- Главная страница -->
+  <url>
+    <loc>https://gasanovez.ru/</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- Страница политики конфиденциальности -->
+  <url>
+    <loc>https://gasanovez.ru/privacy.html</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  
+  <!-- Изображения для индексации -->
+  <url>
+    <loc>https://gasanovez.ru/img/pexels-heyho-11701126.jpg</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <image:image xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+      <image:loc>https://gasanovez.ru/img/pexels-heyho-11701126.jpg</image:loc>
+      <image:title>Ремонт квартиры в Москве - современный интерьер</image:title>
+      <image:caption>Профессиональный ремонт квартир под ключ в Москве и Московской области</image:caption>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://gasanovez.ru/img/pexels-andrew-5860599.jpg</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <image:image xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+      <image:loc>https://gasanovez.ru/img/pexels-andrew-5860599.jpg</image:loc>
+      <image:title>Отделочные работы - штукатурка и покраска стен</image:title>
+      <image:caption>Качественные отделочные работы в Москве</image:caption>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://gasanovez.ru/img/pexels-heyho-8142054.jpg</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <image:image xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+      <image:loc>https://gasanovez.ru/img/pexels-heyho-8142054.jpg</image:loc>
+      <image:title>Дизайн интерьера - ремонт под ключ</image:title>
+      <image:caption>Дизайнерский ремонт квартир в Москве</image:caption>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://gasanovez.ru/img/pexels-skylar-kang-6045174.jpg</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <image:image xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+      <image:loc>https://gasanovez.ru/img/pexels-skylar-kang-6045174.jpg</image:loc>
+      <image:title>Укладка плитки в ванной комнате</image:title>
+      <image:caption>Сантехнические работы и укладка плитки</image:caption>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://gasanovez.ru/img/pexels-karolina-grabowska-4194863.jpg</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <image:image xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+      <image:loc>https://gasanovez.ru/img/pexels-karolina-grabowska-4194863.jpg</image:loc>
+      <image:title>Штукатурные работы - выравнивание стен</image:title>
+      <image:caption>Качественная штукатурка стен в Москве</image:caption>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://gasanovez.ru/img/bath.jpg</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <image:image xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+      <image:loc>https://gasanovez.ru/img/bath.jpg</image:loc>
+      <image:title>Сантехнические работы - установка ванны</image:title>
+      <image:caption>Установка сантехники в Москве</image:caption>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://gasanovez.ru/img/plitka.jpg</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <image:image xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+      <image:loc>https://gasanovez.ru/img/plitka.jpg</image:loc>
+      <image:title>Укладка плитки на пол и стены</image:title>
+      <image:caption>Профессиональная укладка плитки в Москве</image:caption>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://gasanovez.ru/img/paint.jpg</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <image:image xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+      <image:loc>https://gasanovez.ru/img/paint.jpg</image:loc>
+      <image:title>Покрасочные работы - покраска стен</image:title>
+      <image:caption>Качественная покраска стен в Москве</image:caption>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://gasanovez.ru/img/shtucatur.jpg</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <image:image xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+      <image:loc>https://gasanovez.ru/img/shtucatur.jpg</image:loc>
+      <image:title>Штукатурные работы - отделка потолка</image:title>
+      <image:caption>Отделка потолков в Москве</image:caption>
+    </image:image>
+  </url>
+  
+</urlset>

@@ -1,0 +1,28 @@
+User-agent: *
+Allow: /
+
+# Разрешаем индексацию всех страниц
+Allow: /index.html
+Allow: /privacy.html
+
+# Разрешаем индексацию изображений
+Allow: /img/
+Allow: /icons/
+
+# Разрешаем индексацию CSS и JS файлов
+Allow: /css/
+Allow: /js/
+
+# Запрещаем индексацию PHP файлов
+Disallow: /php/
+
+# Запрещаем индексацию системных файлов
+Disallow: /.git/
+Disallow: /node_modules/
+Disallow: /dist/
+
+# Указываем расположение sitemap
+Sitemap: https://gasanovez.ru/sitemap.xml
+
+# Время задержки между запросами (в секундах)
+Crawl-delay: 1
